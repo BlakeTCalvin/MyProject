@@ -69,7 +69,7 @@ class Workouts(db.Model):
     exercises_id = db.Column(db.Integer, db.ForeignKey('exercises.id'), nullable=False)
     description = db.Column(db.String(255))
     intensity = db.Column(db.String(15))
-    created_by = db.Column(db.String(45))
+    created_by = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now())
 
@@ -80,9 +80,30 @@ class Exercises(db.Model):
     instructions = db.Column(db.String(255))
     muscles_this_exercise_uses = db.relationship('Muscles', secondary=muscles_exercises_table)
     intensity = db.Column(db.String(15))
-    created_by = db.Column(db.String(45))
+    created_by = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now())
+
+    @classmethod
+    def validate_exercise(cls, user_data):
+        is_valid = True
+        if len(user_data['name']) < 1:
+            is_valid = False
+            flash("Enter a Name")
+        if len(user_data['description']) < 1:
+            is_valid = False
+            flash("Enter a description")
+        if len(user_data['instructions']) < 1:
+            is_valid = False
+            flash("Enter instructions")
+        return is_valid
+
+    @classmethod
+    def new_exercise(cls, user_data):
+        exercise_to_add = cls(name=user_data['name'], description=user_data['description'], instructions=user_data['instructions'], intensity=user_data['intensity'], created_by=session["user_id"])
+        db.session.add(exercise_to_add)
+        db.session.commit()
+        return exercise_to_add
 
 class Muscles(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -90,3 +111,10 @@ class Muscles(db.Model):
     exercises_this_muscle_has = db.relationship('Exercises', secondary=muscles_exercises_table)
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, server_default=func.now())
+
+    @classmethod
+    def new_muscle(cls, user_data):
+        muscle_to_add = cls(muscle=user_data['muscle'])
+        db.session.add(muscle_to_add)
+        db.session.commit()
+        return muscle_to_add

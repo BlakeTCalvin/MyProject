@@ -101,7 +101,46 @@
         margin: 10px;
         height: 200px;
     }
-    #workout h1 {
-        color: black;
-        padding: 20px;
+        #workout h1 {
+            color: black;
+            padding: 20px;
+        }
+    
+    #exercise {
+        border: solid black;
+        background: #bd1616;
+        margin: 10px;
+        height: 500px;
     }
+        #exercise h1 {
+            color: black;
+            padding: 20px;
+            display: inline-block;
+        }
+        #exercise form {
+            border: solid black;
+            float: right;
+            width: 500px;
+            min-height: 470px;
+            margin: 10px;
+            padding: 20px;
+            background: darkgray;
+        }
+            #exercise form h3 {
+                color: black;
+            }
+            #exercise form input {
+                padding: 5px;
+                text-align: left;
+            }
+            #exercise form .textbox {
+                padding: 10px;
+                width: 400px;
+            }
+            #exercise ul li {
+                list-style-type: none;
+            }
+        #exercise #error_messages {
+            color: red;
+            padding-left: 40px;
+        }

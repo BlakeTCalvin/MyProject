@@ -22,6 +22,7 @@
                 <ul>
                     <li><a href="#header">Home</a></li>
                     <li><a href="#workout">Workouts</a></li>
+                    <li><a href="#exercise">Exercises</a></li>
                 </ul>
             </nav>
         </div>
@@ -30,6 +31,43 @@
             <div id="workout">
                 <h1>Workouts</h1>
             </div>
+            <div id="exercise">
+                <h1>Exercises</h1>
+                <form action="/process_exercise" method="post">
+                    <h3>Have a New Exercise?</h3>
+                    {% with messages = get_flashed_messages() %}     
+                        {% if messages %}                           
+                            {% for message in messages %}            
+                                <p id="error_messages">{{message}}</p>                   
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    <ul>
+                        <li>Name<br><input type="text" name="name" placeholder="Name of Exercise"><li>
+                        <li>Main Muscle Group Used<br><select name="musclegroupused">
+                            <option value="chest">Chest</option>
+                            <option value="back">Back</option>
+                            <option value="shoulders">Shoulders</option>
+                            <option value="biceps">Biceps</option>
+                            <option value="triceps">Triceps</option>
+                            <option value="forearms">Forearms</option>
+                            <option value="core">Core</option>
+                            <option value="legs">Legs</option>
+                        </select></li>
+                        <li>Intensity<br><select name="intensity">
+                                <option value="easy">Easy</option>
+                                <option value="average">Average</option>
+                                <option value="hard">Hard</option>
+                        </select></li>
+                        <li>Description<br><input type="text" name="description" class="textbox" placeholder="Add a description"></li>
+                        <li>Instructions<br><input type="text" name="instructions" placeholder="Explanation of Exercise" class="textbox"></li>
+                        <input type="submit" value="Create Exercise">
+                    </ul>
+                </form>
+            </div>
+            <form action="/process_muscle" method="post">
+                name of muscle: <input type="text" name="muscle">
+            </form>
         </div>
     </div>
 

@@ -42,6 +42,18 @@ def home():
     else:
         return redirect("/login")
 
+def processExercise():
+    validation_check = Exercises.validate_exercise(request.form)
+    if not validation_check:
+        return redirect("/home#exercise")
+    else:
+        new_exercise = Exercises.new_exercise(request.form)
+    return redirect("/home")
+
+def processMuscle():
+    new_muscle = Muscles.new_muscle(request.form)
+    return redirect("/home")
+
 def logout():
     session.clear()
     return redirect("/login")
