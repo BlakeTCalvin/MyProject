@@ -1,0 +1,107 @@
+#container {
+    font-family: 'Nunito', sans-serif;
+    background: darkgray;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    height:100%;
+    width:100%;
+}
+
+
+#header {
+    height: 100px;
+}
+    #header h1 {
+        display: inline-block;
+        margin: 20px;
+    }
+    #header form{
+        height: 50px;
+        float: right;
+        margin: 25px 50px;
+        padding-top: 10px;
+        padding-left: 20px;
+        font-family: 'Nunito', sans-serif;
+        border-left: thick solid black;
+    }
+
+#navigation {
+    background: black;
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    overflow: hidden;
+}
+
+    nav {
+        text-align: center;
+    }
+
+    nav ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    nav ul li {
+        display: inline-block;
+        margin-left: 70px;
+        padding-top: 20px;
+        position: relative;
+    }
+    
+    nav ul li a {
+        font-family: 'Nunito', sans-serif;
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+    nav ul li a:hover {
+        color: red;
+    }
+    nav a::before {
+        content: '';
+        display: block;
+        height: 5px;
+        background-color: red;
+        position: absolute;
+        top: 0;
+        width: 0%;
+        transition: all ease-in-out 150ms;
+    }
+    nav a:hover::before {
+        width: 100%;
+    }
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+
+#content {
+    padding: 0px;
+}
+    .sticky + #content {
+        padding-top: 60px;
+    }
+    #background_image {
+        display: block;
+        margin-top: 90px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+        width: 80%;
+        border: solid black;
+    }
+
+    #workout {
+        border: solid black;
+        background: #bd1616;
+        margin: 10px;
+        height: 200px;
+    }
+    #workout h1 {
+        color: black;
+        padding: 20px;
+    }

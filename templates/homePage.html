@@ -4,12 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
     <title>Home</title>
 </head>
 <body>
-    <h1>Home {{ session['first_name'] }}</h1>
-    <form id="logout" action="/logout">
-        <input type="submit" value="Logout">
-    </form>
+    <div id="container">
+        <div id="header">
+            <h1>Welcome {{ session['first_name'] }}</h1>
+            <form id="logout" action="/logout">
+                <input type="submit" value="Logout">
+            </form>
+        </div>
+        <div id="navigation">
+            <nav>
+                <ul>
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#workout">Workouts</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div id="content">
+            <img id="background_image" src="{{ url_for('static', filename='img/loginBackground.jpg') }}" alt="Image">
+            <div id="workout">
+                <h1>Workouts</h1>
+            </div>
+        </div>
+    </div>
+
+<script>
+    window.onscroll = function() {myFunction()};
+    
+    var navbar = document.getElementById("navigation");
+    var sticky = navbar.offsetTop;
+    
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+        navbar.classList.add("sticky")
+        } else {
+        navbar.classList.remove("sticky");
+        }
+    }
+</script>
+
 </body>
 </html>
